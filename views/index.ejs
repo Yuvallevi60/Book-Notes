@@ -1,0 +1,15 @@
+<h1>
+    <% if(locals.headLine) { %>
+        <%= headLine %>
+    <% } else { %>
+        Hello
+    <% } %>
+</h1>
+
+<form action="/add" method="post">
+    <input type="text" name="bookName" placeholder="Book Name">
+    <input type="text" name="bookName" placeholder="Rate">
+    <input type="submit" value="add">
+</form>
+
+<img src="https://covers.openlibrary.org/b/id/240727-M.jpg">
