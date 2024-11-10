@@ -1,15 +1,20 @@
-<h1>
-    <% if(locals.headLine) { %>
-        <%= headLine %>
-    <% } else { %>
-        Hello
-    <% } %>
-</h1>
+<h1>Book Note</h1>
 
 <form action="/add" method="post">
-    <input type="text" name="bookName" placeholder="Book Name">
-    <input type="text" name="bookName" placeholder="Rate">
+    <input type="text" name="bookTitle" placeholder="Book Title">
+    <input type="text" name="bookRate" placeholder="Rate">
     <input type="submit" value="add">
 </form>
 
-<img src="https://covers.openlibrary.org/b/id/240727-M.jpg">
+<p>
+    <h2>Reviews</h2>
+    <% if(locals.reviews) { 
+        reviews.forEach((review) => { %>
+            <p>
+                <lable>Title: <%= review.book_title%></lable>
+                <label>Rate: <%= review.rate%></label>
+                <img src="<%= review.cover_url%>">
+            </p>
+        <% }) 
+    } %>
+</p>
