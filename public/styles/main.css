@@ -1,10 +1,9 @@
 .review-template {
     display: grid;
-    grid-template-columns: 150px auto;
-    grid-template-rows: auto;
+    grid-template-columns: 150px 300px;
+    grid-template-rows: 200px;
 
     margin: 10px;
-    margin-bottom: 50px;
 }
 
 .book-cover {
@@ -18,4 +17,13 @@
 
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
+
+.review-form {
+    width: 300px;
+    display: grid;
+    grid-template-columns: auto 100px;
+    grid-template-rows: auto 100px auto;
+}
+

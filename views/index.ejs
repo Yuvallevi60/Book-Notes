@@ -9,11 +9,12 @@
 <body>
 
     <h1>Book Note</h1>
-
-    <form action="/add" method="post">
-        <input type="text" name="bookTitle" placeholder="Book Title">
-        <input type="text" name="bookRate" placeholder="Rate">
-        <input type="submit" value="add">
+    
+    <form action="/add" method="post" class="review-form">
+        <input type="text" name="bookTitle" placeholder="Book Title" style="grid-column: 1; grid-row: 1;">
+        <input type="text" name="bookRate" placeholder="Rate" style="grid-column: 2; grid-row: 1;">
+        <textarea name="reviewBody" style="grid-row: 2; grid-column: span 2;"></textarea>
+        <input type="submit" value="add" style="grid-row: 3; grid-column: span 2;">
     </form>
 
     <p>
@@ -21,12 +22,14 @@
         <% if(locals.reviews) { 
             reviews.forEach((review) => { %>
                 <div class="review-template">
-                    <p class="review-details">
-                        <lable>Title: <%= review.book_title%></lable>
-                        <label>Rate: <%= review.rate%></label>
+                    <p class="review-details">                     
+                        <lable><%= review.book_title%> (<%= review.rate%>/5)</lable>
+                        <lable><%= review.review_body%></lable>
+                        <label style="color: darkgray;"><%= review.date.toLocaleDateString()%></label>
                     </p>
                     <img class="book-cover" src="<%= review.cover_url%>">
                 </div>
+                <hr>
             <% }) 
         } %>
     </p>

@@ -28,20 +28,19 @@ app.get("/", async (req, res) => {
 app.post ("/add", async (req, res) => {
     let bookTitle = req.body.bookTitle;
     const bookRate = req.body.bookRate;
-    console.log(bookTitle);
+    const date = new Date();
+    const reviewBody = req.body.reviewBody;
 
     let coverUrl = null;
     try {
         const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${bookTitle}`);
         const bookData = response.data.items[0];
 
-        console.log(bookData.volumeInfo.title)
-
         if (bookData && bookData.volumeInfo.imageLinks) {
             coverUrl = bookData.volumeInfo.imageLinks.thumbnail;
             bookTitle = bookData.volumeInfo.title;
         }
-        await db.query("INSERT INTO reviews (book_title, rate, cover_url) VALUES ($1, $2, $3)", [bookTitle, bookRate, coverUrl])
+        await db.query("INSERT INTO reviews (book_title, rate, cover_url, date, review_body) VALUES ($1, $2, $3, $4, $5)", [bookTitle, bookRate, coverUrl, date, reviewBody])
 
         res.redirect("/");
     } catch (error) {
